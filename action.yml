@@ -1,0 +1,5 @@
+name: 'Hello Kotlin Docker Action'
+description: 'Hello World!'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
