@@ -11,4 +11,4 @@ FROM openjdk:${VERSION}-jre
 COPY --from=BUILD /src/build/libs/hello-kotlin-docker-action.jar /bin/runner/run.jar
 WORKDIR /bin/runner
 
-CMD ["java","-jar","run.jar"]
+ENTRYPOINT ["java","-jar","run.jar"]
