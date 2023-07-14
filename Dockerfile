@@ -2,13 +2,14 @@ ARG VERSION=8u151
 
 FROM openjdk:${VERSION}-jdk as BUILD
 
-COPY . /src
 WORKDIR /src
+COPY . /src
+
 RUN ./gradlew shadowJar --no-daemon
 
 FROM openjdk:${VERSION}-jre
 
-COPY --from=BUILD /src/build/libs/hello-kotlin-docker-action.jar /bin/runner/run.jar
 WORKDIR /bin/runner
+COPY --from=BUILD /src/build/libs/hello-kotlin-docker-action.jar /bin/runner/run.jar
 
-ENTRYPOINT ["java","-jar","run.jar"]
+ENTRYPOINT ["java", "-jar", "/bin/runner/run.jar"]
